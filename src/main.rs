@@ -1,7 +1,11 @@
+// CRATES
+
 use rand::prelude::*;
 use rand::rngs::StdRng;
 use std::collections::VecDeque;
 use std::fmt;
+
+// STRUCTS + METHODS
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
 enum Rank {
@@ -18,41 +22,6 @@ enum Rank {
     Queen,
     King,
     Ace,
-}
-
-#[derive(Debug, Clone, Copy, PartialEq, Eq)]
-enum Suit {
-    Spade,
-    Heart,
-    Club,
-    Diamond,
-}
-
-impl fmt::Display for Suit {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(
-            f,
-            "{}",
-            match self {
-                Suit::Spade => "♤",
-                Suit::Heart => "♡",
-                Suit::Club => "♧",
-                Suit::Diamond => "♢",
-            }
-        )
-    }
-}
-
-#[derive(Debug, Clone, Copy)]
-struct Card {
-    rank: Rank,
-    suit: Suit,
-}
-
-impl fmt::Display for Card {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}{}", self.rank, self.suit)
-    }
 }
 
 impl Rank {
@@ -91,6 +60,41 @@ impl fmt::Display for Rank {
     }
 }
 
+#[derive(Debug, Clone, Copy, PartialEq, Eq)]
+enum Suit {
+    Spade,
+    Heart,
+    Club,
+    Diamond,
+}
+
+impl fmt::Display for Suit {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        write!(
+            f,
+            "{}",
+            match self {
+                Suit::Spade => "♤",
+                Suit::Heart => "♡",
+                Suit::Club => "♧",
+                Suit::Diamond => "♢",
+            }
+        )
+    }
+}
+
+#[derive(Debug, Clone, Copy)]
+struct Card {
+    rank: Rank,
+    suit: Suit,
+}
+
+impl fmt::Display for Card {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        write!(f, "{}{}", self.rank, self.suit)
+    }
+}
+
 #[derive(Debug, Clone, Copy, PartialEq)]
 enum Player {
     One,
@@ -112,6 +116,8 @@ impl Player {
         }
     }
 }
+
+// LOGGING MODULE
 
 mod logging {
     use super::{Card, Player};
@@ -174,6 +180,8 @@ mod logging {
         println!("[{}]", print_deck(deck));
     }
 }
+
+// HELPER FUNCTIONS
 
 fn create_deck() -> Vec<Card> {
     let ranks = [
@@ -249,6 +257,8 @@ fn process_penalty_phase(
         }
     }
 }
+
+// MAIN GAME LOOP
 
 fn main() {
     let seed = rand::rng().next_u64();
