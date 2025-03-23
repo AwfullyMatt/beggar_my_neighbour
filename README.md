@@ -7,3 +7,5 @@ FUTURE:
   -- Save used seeds + results  
   -- Load from saved seeds  
   -- Continuous run option  
+
+  https://en.wikipedia.org/wiki/Beggar-my-neighbour
